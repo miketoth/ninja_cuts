@@ -1,19 +1,27 @@
 {
     "name": "ninja_cuts",
-    "version": "0.0.1",
-    "description": "Learn all the shortcuts",
-    "dependencies": {
-        "express": "3.1.x",
-        "coffee-script": "1.6.x"
+    "version": "0.0.0",
+    "description": "Learn shortcuts and stuff!",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
     },
     "repository": {
         "type": "git",
-        "url": "git://github.com/miketoth/ninja_cuts.git"
+        "url": "https://github.com/miketoth/ninja_cuts.git"
     },
-    "author": "",
+    "author": "Michael Toth",
     "license": "MIT",
-    "engines": {
-        "node": "0.10.x",
-        "npm": "1.2.x"
+    "bugs": {
+        "url": "https://github.com/miketoth/ninja_cuts/issues"
+    },
+    "dependencies": {
+        "typescript": "0.9.1"
+    },
+    "devDependencies": {
+        "grunt": "~0.4.1",
+        "grunt-contrib-watch": "x.x.x",
+        "grunt-typescript": "x.x.x",
+        "grunt-contrib-nodeunit": "~0.2.0"
     }
 }
