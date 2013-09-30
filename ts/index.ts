@@ -1,43 +1,71 @@
 /// <reference path="d/jquery.d.ts" />
 
-class Lesson {
+/**
 
+Structure of short_cuts
+
+{
+	"command1": {
+		"explanation": "does stuff"
+	},
+	"command2": {
+		"explanation": "other stuff"
+	}
+}
+
+*/
+
+class Lesson {
+	short_cuts = []
+	constructor(short_cuts) {
+		this.short_cuts = short_cuts;
+	}
+
+	// debug for the lesson
+	show() {
+		return console.log (this.short_cuts);
+	}
 }
 
 //////////////////////////////////////////////////
 
 $(document).ready(function() {
-	var lesson = ['h', 'j', 'k', 'l'];
-	var counter = 0;
 
-	$("#lesson-box").attr('placeholder', lesson[0]);
+	// let user select which lesson to load
 
-	$("#lesson-box").on("input", function() {
+	// get the specified JSON file and load it into the lesson 
+	$.getScript("lessons/test.js",function(data) {
+		var json_data = JSON.parse(data);
 
-		if(lesson[counter] == $("#lesson-box").val()) {
-			console.log($("#lesson-box").val());
-			counter++;
-		}
+		var lesson = new Lesson(json_data);
+		var counter = 0;
 
-		// clear the box afterwards
-		setTimeout(function() {
-			$("#lesson-box").val("");
-			}, 450);
+		// insert initial command and explanation
+		$("#lesson-box").attr('placeholder', lesson.short_cuts[0].command);
+		$("#lesson-explanation").text(lesson.short_cuts[0].explanation);
 
-		$("#lesson-box").keypress(function(e) {
-			var code = String.fromCharCode(e.which);
+		$("#lesson-box").on("input", function() {
 
-			if(lesson[counter] == code) {
+			// if correct iterate to the next value
+			if(lesson.short_cuts[counter].command == $("#lesson-box").val()) {
 				counter++;
 			}
+
+			// clear the box afterwards
+			setTimeout(function() {
+				$("#lesson-box").val("");
+			}, 450);
+
+			// loop counter back around
+			// because Objects are unordered associative arrays,
+			// we have to get the length by taking the array of keys for the object
+			if(counter > Object.keys(lesson.short_cuts).length - 1) {
+				counter = 0;
+			}
+
+			// put new character in the box
+			$("#lesson-box").attr("placeholder", lesson.short_cuts[counter].command);
+			$("#lesson-explanation").text(lesson.short_cuts[counter].explanation);
 		});
-
-		// loop counter back around
-		if(counter > 3) {
-			counter = 0;
-		}
-
-		// put new character in the box
-		$("#lesson-box").attr("placeholder", lesson[counter]);
 	});
 });
