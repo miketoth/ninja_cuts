@@ -4,13 +4,13 @@
 
 Structure of short_cuts
 
-{
-	"command1": {
-		"explanation": "does stuff"
-	},
-	"command2": {
-		"explanation": "other stuff"
+[
+	{
+		"command": "YOUR STUFF HERE",
+		"explanation": "YOUR STUFF HERE"
 	}
+]
+	
 }
 
 */
@@ -30,7 +30,7 @@ class Lesson {
 //////////////////////////////////////////////////
 
 $(document).ready(function() {
-	
+
 	// let user select which lesson to load
 	// display each lesson in the lesson folder
 	$("a").click(function() {
@@ -49,16 +49,18 @@ $(document).ready(function() {
 
 			$("#lesson-box").on("input", function() {
 
-				// if correct iterate to the next value
-				if(lesson.short_cuts[counter].command == $("#lesson-box").val()) {
+				if(lesson.short_cuts[counter].command === $("#lesson-box").val()) {
 					counter++;
+
+					// clear the box afterwards
+					setTimeout(function() {
+						$("#lesson-box").val("");
+					}, 450);
 				}
-
-				// clear the box afterwards
-				setTimeout(function() {
-					$("#lesson-box").val("");
-				}, 450);
-
+				else {
+					// just wait for them to figure it out
+					// maybe highlight the box in red
+				}
 				// loop counter back around
 				// because Objects are unordered associative arrays,
 				// we have to get the length by taking the array of keys for the object
