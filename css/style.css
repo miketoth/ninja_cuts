@@ -1,3 +1,29 @@
+body {
+  background-image: url('geometry/geometry.png');
+}
+
+/* move the lesson box & message down and
+  make the text a little larger */
+
+.row-fluid .text-center {
+  font-size: 10px;
+  margin-top: 170px;
+}
+
+#lesson-box {
+  padding: 3px;
+  width: 300px;
+  height: 40px;
+  border: 2px solid #dadada;
+  border-radius: 7px;
+}
+
+#lesson-box:focus {
+    outline:none;
+    border-color:#9ecaed;
+    box-shadow:0 0 10px #9ecaed;
+}
+
 #wrapper {
   padding-left: 250px;
   transition: all 0.4s ease 0s;
@@ -87,4 +113,3 @@
   transition: all 0.4s ease 0s;
 }
 
-}

@@ -11,7 +11,7 @@ if($dh = opendir($dir)) {
 	}
 }
 
-$html = "<li class='sidebar-brand'><a href='#'>Lessons</a></li>";
+$html = "<li class='sidebar-brand'><a id='lesson-brand' href='#'>Lessons</a></li>";
 
 foreach ($lesson_array as $lesson) {
 	$html .= "<li><a id='" . $lesson . "' href='#'>" . substr($lesson, 0, sizeof($lesson) - 4) . "</a></li>"; 
