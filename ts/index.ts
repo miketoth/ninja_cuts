@@ -42,7 +42,7 @@ $(document).ready(function() {
 	// but we should let the user collapse it or something
 	$(".lesson-brand").click(function() {
 		console.log("Lets hide it");
-		$("#sidebar-wrapper").slideLeft("slow", function() {
+		$("#sidebar-wrapper").slideUp("slow", function() {
 			console.log("did it work?");
 		});
 	});
@@ -68,22 +68,34 @@ $(document).ready(function() {
 				if(lesson.short_cuts[counter].command === $("#lesson-box").val()) {
 					counter++;
 
+					$("#lesson-box").css("border-color", "green");
+
+
 					// highlight the box green for a few seconds
 					// clear the box afterwards
 					setTimeout(function() {
 						$("#lesson-box").val("");
+						$("#lesson-box").css("border-color", "#9ecaed");
 					}, 450);
 				}
 				else {
-					// check to see if it is a substring of the command 
-					// ie :w is potentially still correct for the command :wq
-					// while :q is incorrect
+					var currentValue = $("#lesson-box").val().toString();
 
-					// basically as long as the command could be correct keep the box highlighted blue
-					// once it is correct highlight the box green
-					// if it is impossible for the command to be correct
-					// highlight it red until it is returned to a start where it could be correct
-					console.log("fail");
+					// compare it to the substring of the same length of the command
+					var validSubString = lesson.short_cuts[counter].command.substring(0, currentValue.length);
+
+					// Not a valid substring
+					if(currentValue !== validSubString) {
+						$("#lesson-box").css("border-color", "red"); // turn input box border to red
+
+						setTimeout(function() {
+							$("#lesson-box").css("border-color", "#9ecaed");
+						}, 450);
+					}
+					else {
+						console.log("Stayin Blue");
+					}	
+					
 				}
 				// loop counter back around
 				// because Objects are unordered associative arrays,
