@@ -10,13 +10,6 @@ var Lesson = (function () {
 })();
 
 $(document).ready(function () {
-    $(".lesson-brand").click(function () {
-        console.log("Lets hide it");
-        $("#sidebar-wrapper").slideUp("slow", function () {
-            console.log("did it work?");
-        });
-    });
-
     $("a").click(function () {
         $.getScript("lessons/" + this.id, function (data) {
             var json_data = JSON.parse(data);
@@ -44,12 +37,8 @@ $(document).ready(function () {
 
                     if (currentValue !== validSubString) {
                         $("#lesson-box").css("border-color", "red");
-
-                        setTimeout(function () {
-                            $("#lesson-box").css("border-color", "#9ecaed");
-                        }, 450);
                     } else {
-                        console.log("Stayin Blue");
+                        $("#lesson-box").css("border-color", "#9ecaed");
                     }
                 }
 
