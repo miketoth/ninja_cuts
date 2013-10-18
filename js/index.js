@@ -10,9 +10,14 @@ var Lesson = (function () {
 })();
 
 $(document).ready(function () {
-    $("a").click(function () {
-        console.log(this.id);
+    $(".lesson-brand").click(function () {
+        console.log("Lets hide it");
+        $("#sidebar-wrapper").slideUp("slow", function () {
+            console.log("did it work?");
+        });
+    });
 
+    $("a").click(function () {
         $.getScript("lessons/" + this.id, function (data) {
             var json_data = JSON.parse(data);
 
@@ -26,10 +31,26 @@ $(document).ready(function () {
                 if (lesson.short_cuts[counter].command === $("#lesson-box").val()) {
                     counter++;
 
+                    $("#lesson-box").css("border-color", "green");
+
                     setTimeout(function () {
                         $("#lesson-box").val("");
+                        $("#lesson-box").css("border-color", "#9ecaed");
                     }, 450);
                 } else {
+                    var currentValue = $("#lesson-box").val().toString();
+
+                    var validSubString = lesson.short_cuts[counter].command.substring(0, currentValue.length);
+
+                    if (currentValue !== validSubString) {
+                        $("#lesson-box").css("border-color", "red");
+
+                        setTimeout(function () {
+                            $("#lesson-box").css("border-color", "#9ecaed");
+                        }, 450);
+                    } else {
+                        console.log("Stayin Blue");
+                    }
                 }
 
                 if (counter > Object.keys(lesson.short_cuts).length - 1) {
