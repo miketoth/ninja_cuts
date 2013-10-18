@@ -4,14 +4,21 @@
 
 Structure of short_cuts
 
-{
-	"command1": {
-		"explanation": "does stuff"
-	},
-	"command2": {
-		"explanation": "other stuff"
+[
+	{
+		"command": "YOUR STUFF HERE",
+		"explanation": "YOUR STUFF HERE"
 	}
+]
+	
 }
+
+*/
+
+/*
+
+TODO make side bar scrollable
+TODO grrr probably will need jquery UI, bleh
 
 */
 
@@ -31,41 +38,76 @@ class Lesson {
 
 $(document).ready(function() {
 
+	// the sidebar starts invisible? 
+	// but we should let the user collapse it or something
+	$(".lesson-brand").click(function() {
+		console.log("Lets hide it");
+		$("#sidebar-wrapper").slideUp("slow", function() {
+			console.log("did it work?");
+		});
+	});
+
 	// let user select which lesson to load
+	// display each lesson in the lesson folder
+	$("a").click(function() {
+		// get the specified JSON file and load it into the lesson 
+		$.getScript("lessons/" + this.id,function(data) {
+			var json_data = JSON.parse(data); // lessons must be in valid JSON format
 
-	// get the specified JSON file and load it into the lesson 
-	$.getScript("lessons/test.js",function(data) {
-		var json_data = JSON.parse(data);
+			var lesson = new Lesson(json_data);
+			var counter = 0;
 
-		var lesson = new Lesson(json_data);
-		var counter = 0;
+			// insert initial command and explanation
+			$("#lesson-box").attr('placeholder', lesson.short_cuts[0].command);
+			$("#lesson-explanation").text(lesson.short_cuts[0].explanation);
 
-		// insert initial command and explanation
-		$("#lesson-box").attr('placeholder', lesson.short_cuts[0].command);
-		$("#lesson-explanation").text(lesson.short_cuts[0].explanation);
+			// respond to a users attempt
+			$("#lesson-box").on("input", function() {
 
-		$("#lesson-box").on("input", function() {
+				// correct command has been entered
+				if(lesson.short_cuts[counter].command === $("#lesson-box").val()) {
+					counter++;
 
-			// if correct iterate to the next value
-			if(lesson.short_cuts[counter].command == $("#lesson-box").val()) {
-				counter++;
-			}
+					$("#lesson-box").css("border-color", "green");
 
-			// clear the box afterwards
-			setTimeout(function() {
-				$("#lesson-box").val("");
-			}, 450);
 
-			// loop counter back around
-			// because Objects are unordered associative arrays,
-			// we have to get the length by taking the array of keys for the object
-			if(counter > Object.keys(lesson.short_cuts).length - 1) {
-				counter = 0;
-			}
+					// highlight the box green for a few seconds
+					// clear the box afterwards
+					setTimeout(function() {
+						$("#lesson-box").val("");
+						$("#lesson-box").css("border-color", "#9ecaed");
+					}, 450);
+				}
+				else {
+					var currentValue = $("#lesson-box").val().toString();
 
-			// put new character in the box
-			$("#lesson-box").attr("placeholder", lesson.short_cuts[counter].command);
-			$("#lesson-explanation").text(lesson.short_cuts[counter].explanation);
+					// compare it to the substring of the same length of the command
+					var validSubString = lesson.short_cuts[counter].command.substring(0, currentValue.length);
+
+					// Not a valid substring
+					if(currentValue !== validSubString) {
+						$("#lesson-box").css("border-color", "red"); // turn input box border to red
+
+						setTimeout(function() {
+							$("#lesson-box").css("border-color", "#9ecaed");
+						}, 450);
+					}
+					else {
+						console.log("Stayin Blue");
+					}	
+					
+				}
+				// loop counter back around
+				// because Objects are unordered associative arrays,
+				// we have to get the length by taking the array of keys for the object
+				if(counter > Object.keys(lesson.short_cuts).length - 1) {
+					counter = 0;
+				}
+
+				// put new character in the box
+				$("#lesson-box").attr("placeholder", lesson.short_cuts[counter].command);
+				$("#lesson-explanation").text(lesson.short_cuts[counter].explanation);
+			});
 		});
 	});
 });
