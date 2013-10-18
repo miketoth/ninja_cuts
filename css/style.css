@@ -16,6 +16,7 @@ body {
   height: 40px;
   border: 2px solid #dadada;
   border-radius: 7px;
+  font-size: 16pt;
 }
 
 #lesson-box:focus {
