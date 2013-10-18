@@ -26,10 +26,10 @@
                     </div>
                 </div>
             </div>
-            <!-- Kinda a nav bar ish thing -->
+            <!-- Kinda a nav bar ish thing 
             <div class="span6">
-                    <h4><a href="#">Create a Lesson</a></h4>
-            </div>
+                    <h4><a href="lesson.php">Create a Lesson</a></h4>
+            </div> -->
         </div>
         <div class="row-fluid">
             <div class="text-center">
@@ -41,5 +41,10 @@
         </div>
     </div>
     <!-- Add a footer here yo -->
+    <footer class="footer"> 
+        <div class="text-center">
+            <p class="footer">nftymfty</p>
+        </div>
+    </footer>
 </body>
 </html>

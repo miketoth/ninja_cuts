@@ -13,10 +13,6 @@ Structure of short_cuts
 	
 }
 
-*/
-
-/*
-
 TODO make side bar scrollable
 TODO grrr probably will need jquery UI, bleh
 
