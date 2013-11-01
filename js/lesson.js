@@ -1,35 +1,30 @@
 
+/**
+Need to make sure each input box has a uniqure name and id
+*/
+
+var html_command_form = '<div class="well well-lg">'+
+		    				'<div class="control-group">' +
+		    					'<label class="control-label" for="command-description">Description</label>' +
+		    					'<div class="controls">'+
+		    						'<input type="text" id="command-description" placeholder="Description" />' +
+		    					'</div>'+
+		    				'</div>' +
+		    				'<div class="control-group">'+
+		    					'<label class="control-label" for="command">Command</label>'+
+		    					'<div class="controls">'+
+		    						'<input type="text" id="command" placeholder="Command" />'+
+		    					'</div>' +
+		    				'</div>';
+
 $(document).ready(function() {
 
-	// continually append stuff into this so you don't lose what you have done
-	var json_box_content = null;
-
-	// set up json-box
-	$("#json-box").append("<pre id='j-box'> " + JSON.stringify({foo: "sample", bar: "sample" }, null, 4) + " </pre>");
-
-	$("#command-description").keypress(function() {
-		// delete current json object
-		$("#json-box").remove();
-		var content = $("#command-description").val();
-		json_box_content = '"description": content';
-
-		// add a new updated json object
-		// make sure you append new results on to the old values
-		// create a new div with id json-box
-		$("#right-side").append("<div id='json-box'></div>");
-		$("#json-box").append("<pre id='j-box'> " + JSON.stringify({"description": content}, null, 4) + " </pre>");
+	$("#add-command").on("click", function() {
+		$(".commands").append(html_command_form);
 	});
 
-	//when the actuall command is updated do stuff/
-	$("#command").keypress(function() {
-		$("#json-box").remove();
-
-		console.log(json_box_content);
-
-		var content = $("#command").val();
-
-		// do this later json_box_content
-		$("#right-side").append("<div id='json-box'></div>");
-		$("#json-box").append("<pre id='j-box'> " + JSON.stringify({"command": content}, null, 4) + " </pre>");
+	$("#cancel-command").on("click",function() {
+		$(".commands").remove(); // needs to restart page from square one
+		$('<div class="commands">' + html_command_form +'</div>').insertBefore(".btn-group");
 	});
 });
