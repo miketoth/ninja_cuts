@@ -28,13 +28,13 @@
 			    				<div class="control-group">
 			    					<label class="control-label" for="command-description">Description</label>
 			    					<div class="controls">
-			    						<input type="text" name="command-description-1" id="command-description" placeholder="Description" />
+			    						<input type="text" name="command-description1" id="command-description" placeholder="Description" />
 			    					</div>
 			    				</div>
 			    				<div class="control-group">
 			    					<label class="control-label" for="command">Command</label>
 			    					<div class="controls">
-			    						<input type="text" name="command-1" id="command" placeholder="Command" />
+			    						<input type="text" name="command1" id="command" placeholder="Command" />
 			    					</div>
 			    				</div>
 		    				</div>
