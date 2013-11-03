@@ -34,15 +34,6 @@ class Lesson {
 
 $(document).ready(function() {
 
-	// the sidebar starts invisible? 
-	// but we should let the user collapse it or something
-	$(".lesson-brand").click(function() {
-		console.log("Lets hide it");
-		$("#sidebar-wrapper").slideUp("slow", function() {
-			console.log("did it work?");
-		});
-	});
-
 	// let user select which lesson to load
 	// display each lesson in the lesson folder
 	$("a").click(function() {
@@ -83,13 +74,9 @@ $(document).ready(function() {
 					// Not a valid substring
 					if(currentValue !== validSubString) {
 						$("#lesson-box").css("border-color", "red"); // turn input box border to red
-
-						setTimeout(function() {
-							$("#lesson-box").css("border-color", "#9ecaed");
-						}, 450);
 					}
 					else {
-						console.log("Stayin Blue");
+						$("#lesson-box").css("border-color", "#9ecaed");
 					}	
 					
 				}

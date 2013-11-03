@@ -26,19 +26,19 @@
 		    				<div class="commands">
 		    				<div class="well well-lg">
 			    				<div class="control-group">
-			    					<label class="control-label" for="command-description">Description</label>
+			    					<label class="control-label" for="command-description0">Description</label>
 			    					<div class="controls">
-			    						<input type="text" name="command-description1" id="command-description" placeholder="Description" />
+			    						<input type="text" name="command-description0" id="command-description0" placeholder="Description" />
 			    					</div>
 			    				</div>
 			    				<div class="control-group">
-			    					<label class="control-label" for="command">Command</label>
+			    					<label class="control-label" for="command0">Command</label>
 			    					<div class="controls">
-			    						<input type="text" name="command1" id="command" placeholder="Command" />
+			    						<input type="text" name="command0" id="command0" placeholder="Command" />
 			    					</div>
 			    				</div>
 		    				</div>
-	    				</div>
+		    			</div>
 	    				<div class="btn-group">
 		    					<button id="add-command" class="btn btn-default" type="button">Add Another</button>
 		    					<input type="submit" value="Submit" class="btn btn-default" />
